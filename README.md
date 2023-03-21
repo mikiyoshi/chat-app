@@ -28,10 +28,17 @@ npm i -D sass
 ```
 npm run dev
 ```
+```
+npm i -D eslint eslint-config-react-app
+```
+```
+npm i -D @types/node
+```
 
 
 # VScode Extension
 - ES7 React/Redux/GraphQL/React-Native snippets
+  - rcfe // react base code
 - Prettier ESLint
   - Prettier - Code formatter(does it ok???)
 
