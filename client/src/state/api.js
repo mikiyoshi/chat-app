@@ -49,4 +49,6 @@ export const {
   usePostAiTextMutation, // endpoints: postAiText
   usePostAiCodeMutation,
   usePostAiAssistMutation,
+  usePostLoginMutation,
+  usePostSignUpMutation,
 } = api;
