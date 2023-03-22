@@ -59,8 +59,12 @@ npm i -D @types/node
         - Create Person
   - Chats
     - New Chat
-      - Chat Title: test-chat
+      - Chat Title: test-chat // this is for test
         - Create chat
+      - Chat Title: AiChat_ // title starts with AiChat_ will works OpenAI // Setting at client/chat/index.jsx
+      - Chat Title: AiCode_ // title starts with AiCode_ will works OpenAI // Setting at client/chat/index.jsx
+      - Chat Title: AiAssist_ // title starts with AiAssist_ will works OpenAI // Setting at client/chat/index.jsx
+
 - Add a member [OpenAI](https://platform.openai.com/docs/guides/chat/introduction) as a bot
   - User
     - New User

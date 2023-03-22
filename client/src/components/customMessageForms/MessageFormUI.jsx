@@ -11,7 +11,7 @@ const MessageFormUI = ({
   message,
   handleChange,
   handleSubmit,
-  appendText,
+  appendText, // form 内の補完文章の色を変える // from AiAssist.jsx
   handleKeyDown,
 }) => {
   const [preview, setPreview] = useState('');
@@ -46,6 +46,8 @@ const MessageFormUI = ({
             placeholder="Send a message..."
           />
           {appendText && (
+            // form 内の補完文章の色を変える // from AiAssist.jsx
+            // input 内に input を作って、enter or tub を押して確定しない限り、入力文章と補完文章は確定されない
             <input
               className="message-form-assist"
               type="text"

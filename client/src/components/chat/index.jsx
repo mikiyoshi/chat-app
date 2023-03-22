@@ -8,6 +8,7 @@ import Header from '@/components/customHeader';
 import StandardMessageForm from '@/components/customMessageForms/StandardMessageForm';
 import Ai from '@/components/customMessageForms/Ai';
 import AiCode from '@/components/customMessageForms/AiCode';
+import AiAssist from '@/components/customMessageForms/AiAssist';
 
 const Chat = () => {
   const chatProps = useMultiChatLogic(
@@ -15,6 +16,7 @@ const Chat = () => {
     'testuser',
     '1234'
   );
+
   return (
     <div style={{ flexBasis: '100%' }}>
       <MultiChatSocket {...chatProps} />
@@ -23,12 +25,19 @@ const Chat = () => {
         style={{ height: '100vh' }}
         renderChatHeader={(chat) => <Header chat={chat} />}
         renderMessageForm={(props) => {
+          // チャットのタイトルが AiChat_ で始まるもの
           if (chatProps.chat?.title.startsWith('AiChat_')) {
             return <Ai props={props} activeChat={chatProps.chat} />;
           }
+          // チャットのタイトルが AiCode_ で始まるもの
           if (chatProps.chat?.title.startsWith('AiCode_')) {
             return <AiCode props={props} activeChat={chatProps.chat} />;
           }
+          // チャットのタイトルが AiAssist_ で始まるもの
+          if (chatProps.chat?.title.startsWith('AiAssist_')) {
+            return <AiAssist props={props} activeChat={chatProps.chat} />;
+          }
+
           return (
             <StandardMessageForm props={props} activeChat={chatProps.chat} />
           );

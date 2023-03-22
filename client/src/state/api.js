@@ -48,4 +48,5 @@ export const api = createApi({
 export const {
   usePostAiTextMutation, // endpoints: postAiText
   usePostAiCodeMutation,
+  usePostAiAssistMutation,
 } = api;

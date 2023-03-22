@@ -6,6 +6,7 @@ import { openai } from '../index.js';
 dotenv.config();
 const router = express.Router();
 
+// AI で日常会話
 router.post('/text', async (req, res) => {
   // http://localhost:1337/openai/text
   try {
@@ -55,6 +56,7 @@ router.post('/text', async (req, res) => {
   }
 });
 
+// AI でプログラムコードの会話
 router.post('/code', async (req, res) => {
   try {
     const { text, activeChatId } = req.body;
@@ -103,6 +105,32 @@ router.post('/code', async (req, res) => {
     //   message: 'That model does not exist', // これでエラーの原因が分かる // UPDATE model: 'code-davinci-003' to model: 'code-davinci-002'
     //   type: ...
     // }
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// AI でフォームに入力中の文章を補完
+router.post('/assist', async (req, res) => {
+  try {
+    const { text } = req.body;
+    console.log('AI Assist text: ', text);
+    // result at server 'npm run dev' terminal
+    // AI Assist text:  Can I help
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: `Finish my thought: ${text}`,
+      temperature: 0.5,
+      max_tokens: 1024,
+      top_p: 1,
+      frequency_penalty: 0.5,
+      presence_penalty: 0,
+    });
+    res.status(200).json({ text: response.data.choices[0].text });
+    console.log('AI Assist response: ', response.data.choices[0].text);
+    // result at server 'npm run dev' terminal
+    // AI Assist response:   you with anything else?
+  } catch (error) {
+    console.error('error', error);
     res.status(500).json({ error: error.message });
   }
 });
