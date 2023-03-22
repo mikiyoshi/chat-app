@@ -47,4 +47,5 @@ export const api = createApi({
 // hook
 export const {
   usePostAiTextMutation, // endpoints: postAiText
+  usePostAiCodeMutation,
 } = api;
