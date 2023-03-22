@@ -12,7 +12,15 @@ router.post('/text', async (req, res) => {
     const { text, activeChatId } = req.body;
     // console.log('text: ', text);
     // res.status(200).json({ text });
-    console.log('req.body: ', req.body);
+    // console.log('req.body: ', req.body);
+    // result at server 'npm run dev' terminal
+    // req.body:  {
+    //   attachments: [],
+    //   created: '2023-03-22 16:09:35.016845+00:00',
+    //   sender_username: 'testuser',
+    //   text: 'Hey How is everything?',
+    //   activeChatId: 152992
+    // }
 
     const response = await openai.createCompletion({
       model: 'text-davinci-003',
@@ -24,7 +32,9 @@ router.post('/text', async (req, res) => {
       frequency_penalty: 0.5,
       presence_penalty: 0,
     });
-    console.log('response.data: ', response.data);
+    // console.log('response.data: ', response.data.choices[0].text);
+    // result at server 'npm run dev' terminal
+    // response.data: Everything is going great, thanks for asking!
 
     await axios.post(
       `https://api.chatengine.io/chats/${activeChatId}/messages/`,

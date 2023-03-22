@@ -8,10 +8,10 @@ nvm install v16
 ```
 npm create vite@latest
 ```
-Ok to proceed? (y) y
-✔ Project name: … client
-✔ Select a framework: › React
-✔ Select a variant: › JavaScript
+- Ok to proceed? (y) y
+- ✔ Project name: … client
+- ✔ Select a framework: › React
+- ✔ Select a variant: › JavaScript
 
 ```
 cd client
