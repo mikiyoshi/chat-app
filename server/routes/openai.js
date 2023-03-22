@@ -10,8 +10,35 @@ router.post('/text', async (req, res) => {
   // http://localhost:1337/openai/text
   try {
     const { text, activeChatId } = req.body;
-    console.log('text: ', text);
-    res.status(200).json({ text });
+    // console.log('text: ', text);
+    // res.status(200).json({ text });
+    console.log('req.body: ', req.body);
+
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      // OpenAI Playground https://platform.openai.com/playground
+      prompt: text,
+      temperature: 0.5,
+      max_tokens: 2048,
+      top_p: 1,
+      frequency_penalty: 0.5,
+      presence_penalty: 0,
+    });
+    console.log('response.data: ', response.data);
+
+    await axios.post(
+      `https://api.chatengine.io/chats/${activeChatId}/messages/`,
+      { text: response.data.choices[0].text },
+      {
+        headers: {
+          'Project-ID': process.env.PROJECT_ID,
+          'User-Name': process.env.BOT_USER_NAME,
+          'User-Secret': process.env.BOT_USER_SECRET,
+        },
+      }
+    );
+
+    res.status(200).json({ text: response.data.choices[0].text });
   } catch (error) {
     console.error('error', error);
     res.status(500).json({ error: error.message });

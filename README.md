@@ -61,6 +61,18 @@ npm i -D @types/node
     - New Chat
       - Chat Title: test-chat
         - Create chat
+- Add a member [OpenAI](https://platform.openai.com/docs/guides/chat/introduction) as a bot
+  - User
+    - New User
+      - Username: AI_bot-Steve // setting from server/.env 
+      - Secret: 1234
+      - Confirm Secret: 1234
+        - Create Person
+  - Chats
+    - AiChat_test
+      - Members
+        - Add Member
+          - AI_bot-Steve
 
 ## More Customize
 [Chat Engine Custom CSS](https://chatengine.io/docs/react/v1/customize_ui/custom_css)
@@ -84,10 +96,11 @@ npm i -D @types/node
     - View API Key // right corner my account pull down menu
       - Create new secret key
       - copy secret key // when didn't copy this key, you can't see it again, so delete it and create again // paste to 'OPEN_API_KEY' at server/.env
+        - エラーが出たときは再度 secret key を作って server/.env を更新 // [API keys](https://platform.openai.com/account/api-keys)
 
 ## create server
 - create server folder in chat-app folder // same layer at client
-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
+
 ```
 mkdir server
 ```
@@ -97,7 +110,7 @@ cd server
 ```
 npm init -y
 ```
-- create .env file in server folder
+- create .env file in server folder // [API keys](https://platform.openai.com/account/api-keys)
 ```
 PORT=1337 // 1337 from client/.env.local VITE_BASE_URL=http://localhost:1337
 OPEN_API_KEY= // this is copy from OpenAI API key // secret key
@@ -142,4 +155,8 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration); // add export before const
 ```
+
+[OpenAI Playground](https://platform.openai.com/playground)
+
+[OpenAI API Reference Create completion](https://platform.openai.com/docs/api-reference/completions/create)
 
