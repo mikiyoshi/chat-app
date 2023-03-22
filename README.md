@@ -96,7 +96,12 @@ npm i -D @types/node
     - View API Key // right corner my account pull down menu
       - Create new secret key
       - copy secret key // when didn't copy this key, you can't see it again, so delete it and create again // paste to 'OPEN_API_KEY' at server/.env
-        - エラーが出たときは再度 secret key を作って server/.env を更新 // [API keys](https://platform.openai.com/account/api-keys)
+        - if 'POST' error and 'Incorrect API key', create API key again at [API keys](https://platform.openai.com/account/api-keys)
+        ```
+        POST /openai/text 500
+        message: 'Incorrect API key provided: ...
+        ```
+        エラーが出たときは再度 secret key を作って server/.env を更新 // [API keys](https://platform.openai.com/account/api-keys)
 
 ## create server
 - create server folder in chat-app folder // same layer at client
